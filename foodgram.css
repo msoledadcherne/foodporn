@@ -38,8 +38,11 @@ ul {
 }
 
 .addthis_sharing_toolbox {
-    display: inline;
-    float: right;
+  float: right;
+  padding-bottom: 70px;
+  position: absolute;
+  right: 2px;
+  bottom: 0;
 }
 
 .thumbnail {
