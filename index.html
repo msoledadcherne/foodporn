@@ -6,8 +6,10 @@
 		<link rel="stylesheet" type="text/css" href="foodgram.css">
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 		<link href='http://fonts.googleapis.com/css?family=Roboto:100,300' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="animate.css">
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="foodgram.js"></script>
+			<script type="text/javascript" src="AnimatedResponsiveImageGrid/js/jquery.gridrotator.js"></script>
 		<script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5590acb441de2291" async="async"></script>
 	</head>
 	    <body>
@@ -23,7 +25,7 @@
 			<div id="main" class="container-fluid">
 			 	<div class="row">
     				<div id="col1" class="col-md-2">
-						<ul class="nav nav-pills nav-stacked navbar-fixed">
+						<ul class="nav sidenav affix" class="nav nav-pills nav-stacked navbar-fixed" data-spy=affix" data-spy="affix" id="affix-ul"">
 							<li><a href=# id="foodporn">#foodporn</a></li>
 							<li><a href=# class="buttonloc" data-city="49eac9cef964a52099661fe3" >Aziza</a></li>
 							<li><a href=# class="buttonloc" data-city="464348def964a5206e461fe3" >Bar Tartine</a></li>
@@ -39,6 +41,9 @@
 					<div id="col2" class="col-md-10">
 						<div id="photos">
 					</div>
+ 					<!-- <div id="col3" class="col-md-10"> -->
+					<!-- <button id="more">Load More</button> -->
+				</div>
 				</div>
 			</div>		
 		</body>

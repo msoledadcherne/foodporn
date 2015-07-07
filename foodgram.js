@@ -4,6 +4,29 @@ var hashtag_url = "https://api.instagram.com/v1/tags/foodporn/media/recent?clien
 // var location_url = "https://api.instagram.com/v1/locations/search?foursquare_v2_id="+dataCity+"&client_id=8d561d666c3a44eebf6130fa11d7aee0" ;
 // var location_url_final = "https://api.instagram.com/v1/locations/" +locationId+ "/media/recent?"
 var counter = 0;
+var next_url =  "";
+var max_photos = 12;
+
+var negative_tags = [
+"bodybuilding",
+"body",
+"muscle",
+"crossfit",
+"selfie",
+"likeforfollow",
+"sfs", 
+"follow4follow", 
+"like4like", 
+"doubletap",
+"followforfollow",
+"brides",
+"weddings",
+"abs",
+"skin",
+"massage",
+"fashion",
+"shoes"
+]
 
 // Foodpon button 
 
@@ -26,8 +49,7 @@ $(document).ready(function(){
 		});
 	});
 
-// Restaurant buttons 
-
+	// Restaurant buttons 
 	$(".buttonloc").click(function(){
 		$('#photos').html("");
 		counter = 0;
@@ -43,6 +65,40 @@ $(document).ready(function(){
 
 	$("#foodporn").click();
 
+// $("#more").click(function(){
+// $('#photos').html("");
+// 		counter = 0;
+// 		$.ajax({
+// 		type: "GET",
+// 		dataType:'jsonp',
+// 		cache: false,
+// 		url: next_url,
+// 		success: filterPhotos
+// 	});
+// });
+
+
+
+$(window).scroll(function() {
+    if($(window).scrollTop() == $(document).height() - $(window).height()) {
+           counter = 0;
+           getMoreData(next_url)
+    	};
+	});
+
+
+	//Tests -- DELETE
+	/*
+	$(window).scroll(function() {
+		if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+       		console.log("near bottom!");
+       		counter = 0;
+       		getMoreData(next_url)
+
+   		}
+	});
+	*/
+
 });
 
 // Function to paste the pictures #foodporn from json to the html
@@ -56,6 +112,16 @@ $(document).ready(function(){
 // 	$("#photos").append("<a target='_blank' href='" + data.data[i].link +"'><img src='" + data.data[i].images.low_resolution.url +"'></img></a>");
 // 	};
 // }
+
+function checkNegativeTags(tags){
+	for (var i=0;i<tags.length;i++){
+		if (negative_tags.indexOf(tags[i]) > -1) {
+			return true
+		}
+	}
+	return false
+}
+
 
 // Part 2: Get forsquare location 
 
@@ -77,23 +143,25 @@ function getDataLoc(data){
 
 function filterPhotos(pics){
 	// console.log(pics);
-	var next_url = pics.pagination.next_url;
+	next_url = pics.pagination.next_url;
 	$.each(pics.data, function( index, data ) {
   	var tags = pics.data[index].tags; 
   	// console.log("next_url:" + next_url);
   	// console.log(tags);
-  	if (tags.indexOf("foodporn") > -1){		
+  	var hasNegativeTag = checkNegativeTags(tags);
+
+  	if (tags.indexOf("foodporn") > -1 && hasNegativeTag == false){		
 		// photo = "<a href='" +data.link+ "'target=_blank'><img src='" +data.images.low_resolution.url + "'></a>";
-		photo = "<a href=' " +data.link+ "' class='thumbnail' 'target=_blank'> <img src='" +data.images.low_resolution.url + "'></a>";
-		if (counter < 12){
+		photo = "<a href=' " +data.link+ "' target='_blank' class='thumbnail'> <img src='" +data.images.low_resolution.url + "'></a>";
+		if (counter < max_photos){
 			$('#photos').append(photo);	
 			counter = counter+1;
-			console.log("counter is now: " + counter);
+			console.log("counter = " + counter);
 		}
 	}
 	});
 
-	if (counter<12) {
+	if (counter<max_photos) {
 		getMoreData(next_url);
 
 	} 
@@ -102,7 +170,7 @@ function filterPhotos(pics){
 	}
 
 };
-7
+
 function getMoreData(next_url){
 	//ajax para conseguir fotos, y luego pasar la data a filter photos
 	$.ajax({
@@ -115,4 +183,12 @@ function getMoreData(next_url){
 };
 
 
+
+$(document).ready(function(){
+	$("#affix-ul").affix({
+        offset: { 
+            top: 290
+        }
+    });
+});
 

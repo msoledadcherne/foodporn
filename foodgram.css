@@ -12,10 +12,6 @@ ul {
 	font-family: 'Roboto';
 }
 
-/*h6 {
-    font-family: 'Roboto';
-    font-size: 20px;
-}*/
 
 #text1 {
     font-family: 'Roboto', sans-serif;
@@ -25,25 +21,22 @@ ul {
 #main {
 	margin-top: 115px; 
 	background: #FAFAFA;
+
 }
 
 #col1 {
 	background: #FAFAFA;
     font-family: 'Roboto';
     font-size: 15px;
+   /* position: fixed;
+    left: 100px;
+    top: 30px;*/
 }
 
 #col2 {
 	background: #FAFAFA;
 }
 
-.addthis_sharing_toolbox {
-  float: right;
-  padding-bottom: 70px;
-  position: absolute;
-  right: 2px;
-  bottom: 0;
-}
 
 .thumbnail {
     width: 250px;
