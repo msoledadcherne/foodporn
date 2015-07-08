@@ -30,15 +30,18 @@ var negative_tags = [
 "poolvibes",
 "gym",
 "portrait",
+"hot",
+"tagsforlikes",
+"girlswholift",
+
 ]
 
-// Foodpon button 
-
+// Code for social buttons 
 var addthis_config = {
-              pubid: "ra-5590acb441de2291"
-        }
+    pubid: "ra-5590acb441de2291"
+        };
 
-
+// Foodpon button 
 $(document).ready(function(){
 	$("#foodporn").click(function(){
 		console.log("foodporn button clicked!")
@@ -50,24 +53,24 @@ $(document).ready(function(){
 		cache: false,
 		url: "https://api.instagram.com/v1/tags/foodporn/media/recent?client_id=8d561d666c3a44eebf6130fa11d7aee0",
 		success: filterPhotos
-		});
 	});
+});
 
-	// Restaurant buttons 
-	$(".buttonloc").click(function(){
-		$('#photos').html("");
-		counter = 0;
-		var dataCity = $(this).data("city");
-		$.ajax({
+// Restaurant buttons 
+$(".buttonloc").click(function(){
+	$('#photos').html("");
+	counter = 0;
+	var dataCity = $(this).data("city");
+	$.ajax({
 		type: "GET",
 		dataType: "jsonp",
 		cache: false,
 		url: "https://api.instagram.com/v1/locations/search?foursquare_v2_id="+dataCity+"&client_id=8d561d666c3a44eebf6130fa11d7aee0",
 		success: getDataLoc
-		});
 	});
+});
 
-	$("#foodporn").click();
+$("#foodporn").click();
 
 // $("#more").click(function(){
 // $('#photos').html("");
@@ -81,14 +84,14 @@ $(document).ready(function(){
 // 	});
 // });
 
-
+// Scroll functionality
 
 $(window).scroll(function() {
     if($(window).scrollTop() == $(document).height() - $(window).height()) {
            counter = 0;
            getMoreData(next_url)
-    	};
-	});
+    };
+});
 
 
 	//Tests -- DELETE
@@ -117,6 +120,7 @@ $(window).scroll(function() {
 // 	};
 // }
 
+// Check negative keywords
 function checkNegativeTags(tags){
 	for (var i=0;i<tags.length;i++){
 		if (negative_tags.indexOf(tags[i]) > -1) {
@@ -128,7 +132,6 @@ function checkNegativeTags(tags){
 
 
 // Part 2: Get forsquare location 
-
 function getDataLoc(data){
 	console.log(data);
 	var locationId = data.data[0].id;
@@ -144,7 +147,7 @@ function getDataLoc(data){
 	});
 };
 
-
+// Part 2: Filter and paste pictures
 function filterPhotos(pics){
 	// console.log(pics);
 	next_url = pics.pagination.next_url;
@@ -175,8 +178,8 @@ function filterPhotos(pics){
 
 };
 
+// Part 3: Get more data
 function getMoreData(next_url){
-	//ajax para conseguir fotos, y luego pasar la data a filter photos
 	$.ajax({
 		type: "GET",
 		dataType:'jsonp',
@@ -187,7 +190,7 @@ function getMoreData(next_url){
 };
 
 
-
+// Part 3: Menu function
 $(document).ready(function(){
 	$("#affix-ul").affix({
         offset: { 
