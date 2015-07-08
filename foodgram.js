@@ -33,7 +33,10 @@ var negative_tags = [
 "hot",
 "tagsforlikes",
 "girlswholift",
-
+"likeforafollow",
+"beauties",
+"fashion",
+"fashionweek",
 ]
 
 // Code for social buttons 
