@@ -1,12 +1,9 @@
 var client_id = "8d561d666c3a44eebf6130fa11d7aee0";
 var tagName = "foodporn";
 var hashtag_url = "https://api.instagram.com/v1/tags/foodporn/media/recent?client_id=8d561d666c3a44eebf6130fa11d7aee0";
-// var location_url = "https://api.instagram.com/v1/locations/search?foursquare_v2_id="+dataCity+"&client_id=8d561d666c3a44eebf6130fa11d7aee0" ;
-// var location_url_final = "https://api.instagram.com/v1/locations/" +locationId+ "/media/recent?"
 var counter = 0;
 var next_url =  "";
-var max_photos = 12;
-
+var max_photos = 20;
 var negative_tags = [
 "bodybuilding",
 "body",
@@ -25,7 +22,14 @@ var negative_tags = [
 "skin",
 "massage",
 "fashion",
-"shoes"
+"shoes",
+"comedy",
+"humor",
+"instafamous",
+"pool",
+"poolvibes",
+"gym",
+"portrait",
 ]
 
 // Foodpon button 
